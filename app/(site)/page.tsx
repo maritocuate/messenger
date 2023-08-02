@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import './styles.scss'
+import AuthForm from './components/AuthForm'
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         />
         <h2 className='index-container--title'>Sign in</h2>
       </div>
+      <AuthForm />
     </div>
   )
 }
