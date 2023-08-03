@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.1.1",
     "@tailwindcss/forms": "^0.5.4",
     "@types/node": "20.4.5",
     "@types/react": "18.2.18",
@@ -27,6 +28,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "prisma": "^5.1.1",
     "sass": "^1.64.2"
   }
 }
