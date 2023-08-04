@@ -1,0 +1,20 @@
+.avatar {
+    position: relative;
+
+    &--card {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        height: 2rem;
+        width: 2rem;
+    }
+
+    &--ring {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 1rem;
+        width: 1rem;
+    }
+}
