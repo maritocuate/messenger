@@ -19,6 +19,7 @@ const Avatar: React.FC<AvatarProps> = ({ user }) => {
       <div className="avatar--card rounded-full md:h-11 md:w-11">
         <Image
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           src={user?.image || '/images/placeholder.jpg'}
           alt="Avatar"
         />
