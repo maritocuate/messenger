@@ -3,8 +3,8 @@ import { useCallback, useState } from "react"
 import { useRouter } from "next/navigation"
 import {  User } from "@prisma/client"
 
-//import Avatar from "@/app/components/Avatar"
-//import LoadingModal from "@/app/components/modals/LoadingModal"
+import Avatar from "@/app/components/Avatar"
+import LoadingModal from "@/app/components/modals/LoadingModal"
 
 import './styles.scss'
 
@@ -13,47 +13,48 @@ interface UserBoxProps {
 }
 
 const UserBox: React.FC<UserBoxProps> = ({ 
-  data
+    data
 }) => {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter()
+    const [isLoading, setIsLoading] = useState(false)
 
-  const handleClick = useCallback(() => {
-    setIsLoading(true)
+    const handleClick = useCallback(() => {
+        setIsLoading(true)
 
-    axios.post('/api/conversations', { userId: data.id })
-    .then((data) => {
-      router.push(`/conversations/${data.data.id}`)
-    })
-    .finally(() => setIsLoading(false))
-  }, [data, router]);
+        axios.post('/api/conversations', { userId: data.id })
+        .then((data) => {
+            router.push(`/conversations/${data.data.id}`)
+        })
+        .finally(() => setIsLoading(false))
+    }, [data, router])
 
-  return (
-    <>
-      {isLoading && (
-        <div>loading</div>
-      )}
-      <div
-        onClick={handleClick}
-        className="userbox
-          space-x-3 
-          hover:bg-neutral-100
-          rounded-lg
-        "
-      >
-        <div className="min-w-0 flex-1">
-          <div className="focus:outline-none">
-            <span className="absolute inset-0" aria-hidden="true" />
-            <div className="flex justify-between items-center mb-1">
-              <p className="text-sm font-medium text-gray-900">
-                {data.name}
-              </p>
+    return (
+        <>
+            {isLoading && (
+                <LoadingModal />
+            )}
+            <div
+                onClick={handleClick}
+                className="userbox
+                    space-x-3 
+                    hover:bg-neutral-100
+                    rounded-lg
+                "
+            >
+                <Avatar user={data} />
+                <div className="min-w-0 flex-1">
+                    <div className="focus:outline-none">
+                        <span className="absolute inset-0" aria-hidden="true" />
+                        <div className="flex justify-between items-center mb-1">
+                            <p className="text-sm font-medium text-gray-900">
+                                {data.name}
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+        </>
+    );
 }
  
 export default UserBox
