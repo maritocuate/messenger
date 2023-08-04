@@ -1,0 +1,10 @@
+.mobilefooter {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    justify-content: space-between;
+    width: 100%;
+    bottom: 0;
+    z-index: 40;
+    background-color: white;
+}
