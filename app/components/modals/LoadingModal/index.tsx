@@ -19,7 +19,7 @@ const LoadingModal = () => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="loadingmodal--child"/>
+                    <div className="loadingmodal--child bg-opacity-50"/>
                 </Transition.Child>
 
                 <div className="fixed inset-0 z-10 overflow-y-auto">

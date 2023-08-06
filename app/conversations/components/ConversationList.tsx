@@ -9,8 +9,8 @@ import clsx from "clsx"
 //import { find, uniq } from 'lodash'
 
 import useConversation from "@/app/hooks/useConversation"
-/* import { pusherClient } from "@/app/libs/pusher"
-import GroupChatModal from "@/app/components/modals/GroupChatModal" */
+//import { pusherClient } from "@/app/libs/pusher"
+import GroupChatModal from "@/app/components/modals/GroupChatModal"
 import ConversationBox from "../components/ConversationBox"
 import { FullConversationType } from "@/app/types"
 
@@ -72,6 +72,11 @@ const ConversationList: React.FC<ConversationListProps> = ({
 
   return (
     <>
+      <GroupChatModal 
+        users={users} 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+      />
       <aside className={clsx(`
         fixed 
         inset-y-0 

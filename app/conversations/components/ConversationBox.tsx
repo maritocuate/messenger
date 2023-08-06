@@ -9,6 +9,7 @@ import clsx from "clsx"
 import Avatar from "@/app/components/Avatar"
 import useOtherUser from "@/app/hooks/useOtherUser"
 import { FullConversationType } from "@/app/types"
+import AvatarGroup from "@/app/components/AvatarGroup"
 
 interface ConversationBoxProps {
     data: FullConversationType,
@@ -82,7 +83,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
             )}
         >
             {data.isGroup ? (
-                <div>AvatarGroup</div>
+                <AvatarGroup users={data.users} />
             ) : (
                 <Avatar user={otherUser} />
             )}
