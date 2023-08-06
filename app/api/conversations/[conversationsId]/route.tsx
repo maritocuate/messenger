@@ -2,7 +2,7 @@ import getCurrentUser from "@/app/actions/getCurrentUser"
 import { NextResponse } from "next/server"
 
 import prisma from "@/app/libs/prismadb"
-//import { pusherServer } from "@/app/libs/pusher"
+import { pusherServer } from "@/app/libs/pusher"
 
 interface IParams {
   conversationId?: string
@@ -14,10 +14,10 @@ export async function DELETE(
 ) {
     try {
         const { conversationId } = params;
-        const currentUser = await getCurrentUser();
+        const currentUser = await getCurrentUser()
 
         if (!currentUser?.id) {
-            return NextResponse.json(null);
+            return NextResponse.json(null)
         }
 
         const existingConversation = await prisma.conversation.findUnique({
@@ -30,7 +30,7 @@ export async function DELETE(
         })
 
         if (!existingConversation) {
-            return new NextResponse('Invalid ID', { status: 400 });
+            return new NextResponse('Invalid ID', { status: 400 })
         }
 
         const deletedConversation = await prisma.conversation.deleteMany({
@@ -44,7 +44,7 @@ export async function DELETE(
 
         existingConversation.users.forEach((user) => {
             if (user.email) {
-                //pusherServer.trigger(user.email, 'conversation:remove', existingConversation);
+                pusherServer.trigger(user.email, 'conversation:remove', existingConversation)
             }
         })
 
